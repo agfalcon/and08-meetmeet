@@ -20,7 +20,7 @@ data class EventDetail(
     @Json(name = "isJoinable")
     val isJoin: Boolean,
     @Json(name = "isVisible")
-    val isVisible: Int = 0,
+    val isVisible: Boolean,
     @Json(name = "repeatTerm")
     val repeatTerm: String?,
     @Json(name = "repeatFrequency")

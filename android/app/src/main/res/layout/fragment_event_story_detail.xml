@@ -73,6 +73,7 @@
                     style="@style/medium"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:text="@{vm.uiState.eventName}"
                     android:enabled="@{vm.uiState.authority == EventAuthority.OWNER ? true : false}"
                     android:maxLength="64"
                     android:onTextChanged="@{(c, c1, c2, c3) -> vm.setEventName(c)}" />
@@ -167,6 +168,7 @@
                     style="@style/medium"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:text="@{vm.uiState.alarm.stringResId}"
                     android:enabled="@{vm.uiState.authority == EventAuthority.GUEST ? false : true}"
                     android:inputType="none" />
 

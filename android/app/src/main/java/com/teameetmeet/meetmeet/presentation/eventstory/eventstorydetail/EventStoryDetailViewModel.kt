@@ -55,6 +55,7 @@ class EventStoryDetailViewModel @Inject constructor(
     fun fetchStoryDetail() {
         viewModelScope.launch {
             eventStoryRepository.getEventStoryDetail(uiState.value.eventId).catch {
+                Log.d("test", it.toString())
                 when(it) {
                     is ExpiredRefreshTokenException -> {
                         _event.tryEmit(EventStoryDetailEvent.NavigateToLoginActivity)
@@ -78,6 +79,7 @@ class EventStoryDetailViewModel @Inject constructor(
 
             }.collect {eventDetail ->
                 _uiState.update {
+                    Log.d("test", eventDetail.toString())
                     with(eventDetail) {
                         val startLocalDateTime = startDate.toTimeStampLong(DateTimeFormat.SERVER_DATE_TIME, ZoneId.of("UTC")).toLocalDateTime()
                         val endLocalDateTime = endDate.toTimeStampLong(DateTimeFormat.SERVER_DATE_TIME, ZoneId.of("UTC")).toLocalDateTime()
@@ -97,7 +99,7 @@ class EventStoryDetailViewModel @Inject constructor(
                                 else -> EventRepeatTerm.NONE
                             },
                             isJoinable = isJoin,
-                            isOpen = isVisible==1,
+                            isOpen = isVisible,
                             authority = when (authority) {
                                 "OWNER" -> EventAuthority.OWNER
                                 "MEMBER" -> EventAuthority.PARTICIPANT
