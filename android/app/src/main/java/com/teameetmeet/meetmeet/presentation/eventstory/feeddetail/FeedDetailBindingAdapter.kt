@@ -10,3 +10,10 @@ fun <T, VH : RecyclerView.ViewHolder> ViewPager2.bindAdapter(listData: List<T>?)
     listData ?: return
     (this.adapter as ListAdapter<T, VH>).submitList(listData)
 }
+
+@BindingAdapter("sub_list", "index")
+fun <T, VH : RecyclerView.ViewHolder> ViewPager2.bindAdapterWithIndex(listData: List<T>?, index: Int) {
+    listData ?: return
+    (this.adapter as ListAdapter<T, VH>).submitList(listData)
+    this.currentItem = index
+}
